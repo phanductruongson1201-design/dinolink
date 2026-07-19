@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="DinoLink giúp tạo và lưu link mua hàng Shopee, TikTok Shop nhanh chóng.">
+  <meta name="theme-color" content="#2563eb">
+  <title>DinoLink – Tạo link mua hàng Shopee và TikTok Shop</title>
+  <style>
+    :root{
+      --blue:#2563eb;--blue2:#1d4ed8;--cyan:#06b6d4;--ink:#0f172a;--muted:#64748b;
+      --line:#e2e8f0;--bg:#f8fafc;--card:#fff;--green:#059669;--amber:#d97706;--red:#dc2626;
+      --shopee:#ee4d2d;--tiktok:#111827;--shadow:0 24px 70px rgba(15,23,42,.10)
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
+    button,input,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.hidden{display:none!important}
+    .page{min-height:100vh;background:radial-gradient(circle at 0 0,#dbeafe 0,transparent 31%),radial-gradient(circle at 100% 0,#cffafe 0,transparent 28%),#f8fafc}
+    .wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 0;gap:14px}
+    .brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:950;letter-spacing:-.045em}.brand em{font-style:normal;color:var(--blue)}
+    .mark{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 11px 25px rgba(37,99,235,.25)}
+    .mark svg{width:22px;height:22px}.nav{display:flex;align-items:center;gap:9px}.nav-btn{border:1px solid var(--line);background:rgba(255,255,255,.94);padding:10px 13px;border-radius:12px;font-weight:850;color:#334155;box-shadow:0 4px 14px rgba(15,23,42,.04)}
+    .google-btn{display:flex;align-items:center;gap:9px}.g{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:#4285f4;font-weight:950}
+    .user{position:relative;display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);padding:6px 9px 6px 7px;border-radius:14px;cursor:pointer}.avatar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#2563eb,#06b6d4);background-size:cover;background-position:center;font-weight:950;overflow:hidden}.user strong{display:block;font-size:13px}.user small{display:block;color:var(--muted);font-size:11px}.menu{position:absolute;right:0;top:52px;width:210px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 18px 45px rgba(15,23,42,.14);z-index:20}.menu button{width:100%;border:0;background:transparent;text-align:left;padding:10px;border-radius:9px;font-weight:800}.menu button:hover{background:#f1f5f9}
+    .hero{text-align:center;padding:38px 0 35px}.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid #bfdbfe;color:#1d4ed8;font-weight:850;font-size:12px}.pill i{width:8px;height:8px;border-radius:50%;background:#10b981;box-shadow:0 0 0 5px rgba(16,185,129,.11)}
+    h1{font-size:clamp(38px,6vw,66px);line-height:1.04;letter-spacing:-.055em;margin:17px auto 0;max-width:900px}.gradient{background:linear-gradient(90deg,var(--blue),var(--cyan));background-clip:text;-webkit-background-clip:text;color:transparent}.lead{max-width:730px;margin:16px auto 0;color:var(--muted);font-size:17px;line-height:1.65}
+    .benefits{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px auto 0}.benefit{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.8);border:1px solid var(--line);padding:8px 11px;border-radius:999px;font-size:12px;font-weight:800;color:#334155}.check{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;background:#ecfdf5;color:#047857;font-size:11px}
+    .card{background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.98);box-shadow:var(--shadow);border-radius:26px;padding:24px}.converter{max-width:850px;margin:28px auto 0;text-align:left}.platform-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:13px}.platform-chip{display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:#fff;padding:11px 13px;border-radius:15px;color:#475569;font-weight:850}.platform-chip.active{border-color:#93c5fd;background:#eff6ff;color:#1d4ed8;box-shadow:0 0 0 3px rgba(37,99,235,.08)}.platform-logo{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;font-weight:950}.platform-logo.tiktok{background:#111827}.platform-logo.shopee{background:var(--shopee)}
+    .input-shell{display:flex;gap:7px;align-items:center;background:#fff;border:1px solid var(--line);padding:8px;border-radius:17px}.input-shell:focus-within{border-color:#60a5fa;box-shadow:0 0 0 5px #dbeafe}.input-shell input{flex:1;min-width:0;border:0;outline:0;padding:14px 11px;background:transparent}.mini{border:0;background:#f1f5f9;color:#475569;padding:11px 12px;border-radius:11px;font-weight:800}.helper{min-height:29px;display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;margin:9px 2px}.detected{background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:6px 10px;font-weight:850}.primary{width:100%;border:0;padding:15px;border-radius:15px;color:#fff;background:linear-gradient(90deg,var(--blue),var(--cyan));font-weight:950;box-shadow:0 12px 28px rgba(37,99,235,.24)}.primary:disabled{opacity:.55}
+    .alert{padding:12px 14px;border-radius:13px;margin:12px 0;font-size:13px;line-height:1.5}.alert.error{background:#fef2f2;border:1px solid #fecaca;color:#b91c1c}.alert.demo{background:#fffbeb;border:1px solid #fde68a;color:#92400e}.alert.success{background:#ecfdf5;border:1px solid #a7f3d0;color:#047857}
+    .product-card{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:start}.product-image{height:150px;border-radius:18px;display:grid;place-items:center;color:#fff;position:relative;overflow:hidden}.product-image.shopee{background:linear-gradient(145deg,#fb923c,#ef4444)}.product-image.tiktok{background:linear-gradient(145deg,#111827,#334155)}.product-image svg{width:70px;height:70px;opacity:.95}.discount{position:absolute;left:10px;top:10px;background:#fff;color:#dc2626;padding:5px 8px;border-radius:999px;font-weight:950;font-size:11px}.product-main h2{margin:6px 0 7px;font-size:23px;letter-spacing:-.03em}.shop-line{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:13px;flex-wrap:wrap}.stock{background:#ecfdf5;color:#047857;padding:5px 8px;border-radius:999px;font-weight:850;font-size:11px}.price-line{display:flex;align-items:end;gap:10px;margin:14px 0}.price{font-size:29px;font-weight:950;color:#dc2626;letter-spacing:-.04em}.old-price{text-decoration:line-through;color:#94a3b8;font-size:14px}.affiliate-box{border:1px dashed #93c5fd;background:#eff6ff;border-radius:14px;padding:12px;margin-top:12px}.affiliate-box small{display:block;color:#1d4ed8;font-weight:850;margin-bottom:5px}.affiliate-url{word-break:break-all;font-size:12px;color:#334155}.actions{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:9px;margin-top:13px}.actions button,.actions a{border:1px solid var(--line);background:#fff;padding:12px;border-radius:13px;text-align:center;font-weight:900}.actions .copy{background:var(--blue);border-color:var(--blue);color:#fff}.actions .buy-now{background:linear-gradient(90deg,#f97316,#ef4444);border-color:#ef4444;color:#fff;box-shadow:0 10px 24px rgba(239,68,68,.22)}.buy-note{margin:10px 2px 0;color:var(--muted);font-size:12px;text-align:center}
+    .trust{padding:8px 0 50px}.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.trust-card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:19px}.trust-icon{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:#eff6ff;color:#1d4ed8;font-size:20px}.trust-card h3{margin:12px 0 7px;font-size:17px}.trust-card p{margin:0;color:var(--muted);line-height:1.55;font-size:13px}
+    .section{padding:24px 0 66px}.section-title{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:15px}.section-title h2{margin:0;font-size:28px;letter-spacing:-.035em}.section-title p{margin:7px 0 0;color:var(--muted)}.toolbar{display:flex;gap:8px;flex-wrap:wrap}.tool{border:1px solid var(--line);background:#fff;padding:10px 12px;border-radius:11px;font-weight:850;color:#334155}.tool.danger{color:#b91c1c}.filters{display:grid;grid-template-columns:minmax(220px,1fr) 170px 170px;gap:10px;margin:13px 0}.filter-input,.filter-select{width:100%;border:1px solid var(--line);background:#fff;padding:11px 12px;border-radius:12px;outline:0}.filter-input:focus,.filter-select:focus{border-color:#60a5fa;box-shadow:0 0 0 4px #dbeafe}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:14px}.stat{background:#fff;border:1px solid #edf0f5;border-radius:17px;padding:17px;box-shadow:0 4px 15px rgba(15,23,42,.035)}.stat span{color:var(--muted);font-size:12px;font-weight:750}.stat strong{display:block;font-size:25px;margin-top:7px;letter-spacing:-.04em}.table-card{background:#fff;border:1px solid #edf0f5;border-radius:19px;overflow:hidden;box-shadow:0 4px 16px rgba(15,23,42,.04)}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th,td{text-align:left;padding:13px 15px;border-bottom:1px solid #eef2f6;font-size:13px}th{background:#f8fafc;color:#64748b;text-transform:uppercase;letter-spacing:.07em;font-size:10px}.status{padding:6px 9px;border-radius:999px;font-weight:850;font-size:11px}.status.ok{background:#ecfdf5;color:#047857}.status.demo{background:#fffbeb;color:#b45309}.row-link{max-width:210px;overflow:hidden;text-overflow:ellipsis;display:block;color:#2563eb}.row-actions{display:flex;gap:6px}.row-actions button,.row-actions a{border:1px solid var(--line);background:#fff;padding:7px 9px;border-radius:9px;font-size:11px;font-weight:850}.row-actions .rebuy{color:#1d4ed8}.row-actions .delete{color:#b91c1c}.empty{text-align:center;padding:45px 20px;color:var(--muted)}
+    .history-cards{display:none;gap:10px}.history-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px}.history-card-head{display:flex;justify-content:space-between;gap:12px}.history-card h3{margin:0 0 5px;font-size:15px}.history-meta{color:var(--muted);font-size:12px}.history-price{font-size:18px;font-weight:950;margin:12px 0}.history-buttons{display:grid;grid-template-columns:1fr 1fr 42px;gap:7px}.history-buttons button,.history-buttons a{border:1px solid var(--line);background:#fff;padding:10px;border-radius:10px;text-align:center;font-weight:850;font-size:12px}.history-buttons .buy{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .how{padding:15px 0 60px}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.step{background:#fff;border:1px solid var(--line);border-radius:19px;padding:19px}.step-no{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:#eff6ff;color:#1d4ed8;font-weight:950}.step h3{margin:13px 0 7px}.step p{margin:0;color:var(--muted);line-height:1.55;font-size:13px}
+    .faq{padding:5px 0 70px}.faq-wrap{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq details{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px 16px}.faq summary{font-weight:850;cursor:pointer}.faq p{color:var(--muted);font-size:13px;line-height:1.55;margin:10px 0 0}
+    .disclosure{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;border-radius:22px;padding:23px;margin-bottom:60px}.disclosure h3{margin:0 0 8px}.disclosure p{margin:0;color:#dbeafe;line-height:1.6;font-size:13px}
+    footer{border-top:1px solid var(--line);background:rgba(255,255,255,.72)}.footer{padding:27px 0;display:flex;justify-content:space-between;gap:15px;color:var(--muted);font-size:13px}.footer-links{display:flex;gap:16px;flex-wrap:wrap}.footer button{border:0;background:transparent;color:var(--muted);padding:0}
+    .sync-state{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:#fff;padding:8px 10px;border-radius:999px;font-size:12px;font-weight:850;color:#475569}.sync-state::before{content:"";width:8px;height:8px;border-radius:50%;background:#94a3b8}.sync-state.cloud{color:#047857;border-color:#a7f3d0;background:#ecfdf5}.sync-state.cloud::before{background:#10b981}.sync-state.syncing{color:#1d4ed8;border-color:#bfdbfe;background:#eff6ff}.sync-state.syncing::before{background:#3b82f6;animation:syncPulse 1s infinite alternate}.sync-state.error{color:#b91c1c;border-color:#fecaca;background:#fef2f2}.sync-state.error::before{background:#ef4444}@keyframes syncPulse{to{opacity:.25}}
+    .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.58);display:grid;place-items:center;padding:18px;z-index:50}.modal{width:min(460px,100%);background:#fff;border-radius:23px;padding:25px;box-shadow:0 30px 90px rgba(15,23,42,.3);text-align:center;position:relative}.modal h2{margin:17px 0 8px}.modal p{color:var(--muted);line-height:1.55}.close{position:absolute;right:14px;top:12px;border:0;background:#f1f5f9;width:34px;height:34px;border-radius:50%;font-size:21px}.google-wide{width:100%;border:1px solid var(--line);background:#fff;padding:13px;border-radius:13px;font-weight:850;display:flex;align-items:center;justify-content:center;gap:10px}.note{font-size:12px!important}.legal{text-align:left;max-height:60vh;overflow:auto}.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:11px 15px;border-radius:999px;font-size:13px;font-weight:800;opacity:0;pointer-events:none;transition:.25s;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:900px){.summary{grid-template-columns:1fr 1fr}.trust-grid,.steps{grid-template-columns:1fr}.faq-wrap{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters .filter-input{grid-column:1/-1}.product-card{grid-template-columns:120px 1fr}.product-image{height:120px}.actions{grid-template-columns:1fr}.section-title{align-items:flex-start;flex-direction:column}.hero{padding-top:28px}.card{padding:18px}.topbar{align-items:flex-start}.user small{display:none}}
+    @media(max-width:680px){.wrap{width:min(100% - 22px,1120px)}.summary{grid-template-columns:1fr 1fr}.platform-row{grid-template-columns:1fr}.input-shell{flex-wrap:wrap}.input-shell input{flex-basis:100%}.mini{flex:1}.product-card{grid-template-columns:1fr}.product-image{height:145px}.table-wrap{display:none}.history-cards{display:grid}.filters{grid-template-columns:1fr}.filters .filter-input{grid-column:auto}.footer{flex-direction:column}.nav-btn .label{display:none}h1{font-size:42px}.lead{font-size:15px}.hero{padding-bottom:28px}}
+    @media(max-width:430px){.summary{grid-template-columns:1fr}.topbar{padding:14px 0}.brand{font-size:19px}.mark{width:36px;height:36px}.hero{padding-top:20px}.benefits{justify-content:flex-start}.benefit{width:100%;justify-content:flex-start}.card{border-radius:20px}.section-title h2{font-size:24px}}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="wrap topbar">
+    <a class="brand" href="index.html" aria-label="DinoLink">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.3-2.3a4 4 0 0 0-5.7-5.7l-1.3 1.3"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.3 2.3a4 4 0 0 0 5.7 5.7l1.3-1.3"/></svg></span>
+      <span>Dino<em>Link</em></span>
+    </a>
+    <nav class="nav">
+      <button id="loginBtn" class="nav-btn google-btn" type="button" onclick="openLogin()"><span class="g">G</span><span class="label">Đăng nhập Google</span></button>
+      <div id="userBox" class="user hidden" onclick="toggleMenu(event)">
+        <span id="avatar" class="avatar">S</span><span><strong id="userName">Sơn Dino</strong><small id="userEmail">sondino@gmail.com</small></span>
+        <div id="userMenu" class="menu hidden"><button type="button" onclick="scrollHistory(event)">Lịch sử link đơn hàng</button><button type="button" onclick="logout(event)">Đăng xuất</button></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="wrap hero">
+      <span class="pill"><i></i> Hỗ trợ Shopee và TikTok Shop</span>
+      <h1>Dán link sản phẩm – <span class="gradient">mua hàng ngay trong vài giây</span></h1>
+      <p class="lead">DinoLink giúp bạn nhận diện link sản phẩm, lưu lịch sử và mở trực tiếp trang mua hàng một cách nhanh chóng trên điện thoại hoặc máy tính.</p>
+      <div class="benefits">
+        <span class="benefit"><span class="check">✓</span> Không cần nhập thông tin thanh toán</span>
+        <span class="benefit"><span class="check">✓</span> Hỗ trợ Shopee và TikTok Shop</span>
+        <span class="benefit"><span class="check">✓</span> Lưu lịch sử theo tài khoản</span>
+      </div>
+
+      <div class="card converter" id="converter">
+        <div class="platform-row">
+          <div id="chipShopee" class="platform-chip"><span class="platform-logo shopee">S</span><span><strong>Shopee</strong><small style="display:block;color:#94a3b8;font-weight:700">Link sản phẩm và link rút gọn</small></span></div>
+          <div id="chipTikTok" class="platform-chip"><span class="platform-logo tiktok">♪</span><span><strong>TikTok Shop</strong><small style="display:block;color:#94a3b8;font-weight:700">Link sản phẩm và video có sản phẩm</small></span></div>
+        </div>
+        <form id="linkForm">
+          <div class="input-shell">
+            <input id="urlInput" type="url" required placeholder="Dán link sản phẩm Shopee hoặc TikTok Shop tại đây..." autocomplete="off">
+            <button class="mini" type="button" id="pasteBtn">Dán</button>
+            <button class="mini hidden" type="button" id="clearBtn">Xóa</button>
+          </div>
+          <div class="helper"><span>DinoLink không yêu cầu mật khẩu Shopee, TikTok hoặc thông tin thanh toán.</span><span id="detected" class="detected hidden"></span></div>
+          <div id="errorBox" class="alert error hidden"></div>
+          <div class="alert demo"><strong>Chế độ xem trước:</strong> sản phẩm, giá và link affiliate đang được mô phỏng. Bản chạy thật cần kết nối API affiliate hợp lệ.</div>
+          <button class="primary" id="submitBtn" type="submit">Tạo link ngay</button>
+        </form>
+
+        <section id="result" class="hidden" aria-live="polite">
+          <div class="alert success">✓ DinoLink đã xử lý đường link thành công</div>
+          <div class="product-card">
+            <div id="productImage" class="product-image shopee"><span class="discount">-18%</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/><path d="M9.5 13h.01M14.5 13h.01"/></svg></div>
+            <div class="product-main">
+              <div class="shop-line"><span id="resultPlatform" class="tag">Shopee</span><span id="resultShop">Dino Official Store</span><span class="stock">Còn hàng</span></div>
+              <h2 id="resultName">Sản phẩm Shopee được nhận diện</h2>
+              <div class="price-line"><span id="resultPrice" class="price">259.000 ₫</span><span id="resultOldPrice" class="old-price">319.000 ₫</span></div>
+              <div class="affiliate-box"><small>Link DinoLink trả về</small><div id="affiliateUrl" class="affiliate-url"></div></div>
+              <div class="actions">
+                <a id="buyBtn" class="buy-now" href="#" target="_blank" rel="noopener">🛒 Mua ngay</a>
+                <button id="copyBtn" class="copy" type="button">Sao chép link</button>
+                <button id="resetBtn" type="button">Tạo link khác</button>
+              </div>
+              <p class="buy-note">Trong bản xem trước, nút Mua ngay mở link gốc. Khi kết nối API thật, nút sẽ mở link affiliate hợp lệ.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="wrap trust">
+      <div class="trust-grid">
+        <article class="trust-card"><span class="trust-icon">⚡</span><h3>Xử lý nhanh</h3><p>Tự động nhận diện nền tảng và chuẩn hóa đường link trước khi trả kết quả.</p></article>
+        <article class="trust-card"><span class="trust-icon">🔒</span><h3>Tôn trọng quyền riêng tư</h3><p>Không yêu cầu mật khẩu mua sắm, thông tin ngân hàng hoặc địa chỉ giao hàng.</p></article>
+        <article class="trust-card"><span class="trust-icon">🕘</span><h3>Dễ mua lại</h3><p>Lưu lịch sử để bạn tìm kiếm, sao chép hoặc mở lại sản phẩm đã quan tâm.</p></article>
+      </div>
+    </section>
+
+    <section id="history" class="wrap section">
+      <div class="section-title">
+        <div><h2>Lịch sử link đơn hàng</h2><p>Tìm, lọc, mua lại hoặc xóa từng sản phẩm đã tạo link.</p></div>
+        <div class="toolbar"><span id="syncState" class="sync-state">Chưa đăng nhập · lưu trên thiết bị</span><button class="tool" type="button" onclick="exportHistory()">Xuất CSV</button><button class="tool danger" type="button" onclick="clearHistory()">Xóa tất cả</button></div>
+      </div>
+      <div class="filters">
+        <input id="historySearch" class="filter-input" placeholder="Tìm theo tên sản phẩm hoặc đường link...">
+        <select id="platformFilter" class="filter-select"><option value="all">Tất cả nền tảng</option><option value="Shopee">Shopee</option><option value="TikTok Shop">TikTok Shop</option></select>
+        <select id="timeFilter" class="filter-select"><option value="all">Tất cả thời gian</option><option value="day">Hôm nay</option><option value="week">7 ngày</option><option value="month">1 tháng</option></select>
+      </div>
+      <div class="summary">
+        <div class="stat"><span>Tổng link đã dán</span><strong id="totalLinks">0</strong></div>
+        <div class="stat"><span>Link Shopee</span><strong id="shopeeLinks">0</strong></div>
+        <div class="stat"><span>Link TikTok Shop</span><strong id="tiktokLinks">0</strong></div>
+        <div class="stat"><span>Tổng giá trị sản phẩm</span><strong id="totalValue">0 ₫</strong></div>
+      </div>
+      <div class="table-card">
+        <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>Nền tảng</th><th>Sản phẩm</th><th>Giá</th><th>Trạng thái</th><th>Thao tác</th></tr></thead><tbody id="historyRows"></tbody></table></div>
+        <div id="historyCards" class="history-cards"></div>
+        <div id="emptyHistory" class="empty">Bạn chưa có lịch sử link đơn hàng.</div>
+      </div>
+    </section>
+
+    <section class="wrap how">
+      <div class="section-title"><div><h2>DinoLink hoạt động như thế nào?</h2><p>Ba bước đơn giản để mở sản phẩm và mua hàng.</p></div></div>
+      <div class="steps">
+        <article class="step"><span class="step-no">01</span><h3>Dán link</h3><p>Sao chép link sản phẩm từ Shopee hoặc TikTok Shop rồi dán vào DinoLink.</p></article>
+        <article class="step"><span class="step-no">02</span><h3>Nhận diện và xử lý</h3><p>Hệ thống kiểm tra nền tảng, chuẩn hóa link và gọi bộ kết nối affiliate.</p></article>
+        <article class="step"><span class="step-no">03</span><h3>Mua ngay hoặc lưu lại</h3><p>Mở sản phẩm, sao chép link hoặc quay lại lịch sử để mua lại sau.</p></article>
+      </div>
+    </section>
+
+    <section class="wrap faq">
+      <div class="section-title"><div><h2>Câu hỏi thường gặp</h2><p>Thông tin cần biết trước khi sử dụng DinoLink.</p></div></div>
+      <div class="faq-wrap">
+        <details><summary>DinoLink có làm tăng giá sản phẩm không?</summary><p>Không. Việc tạo link tiếp thị không làm thay đổi giá sản phẩm mà nền tảng hiển thị cho bạn.</p></details>
+        <details><summary>DinoLink có lưu mật khẩu Shopee hoặc TikTok không?</summary><p>Không. DinoLink không yêu cầu mật khẩu tài khoản mua sắm hoặc thông tin thanh toán.</p></details>
+        <details><summary>Bấm Mua ngay có đồng nghĩa đã phát sinh đơn không?</summary><p>Không. Đơn chỉ được ghi nhận khi nền tảng affiliate xác nhận giao dịch đủ điều kiện.</p></details>
+        <details><summary>Tại sao giá có thể khác lúc mở sản phẩm?</summary><p>Giá và ưu đãi có thể thay đổi theo thời điểm, người dùng, mã giảm giá hoặc chính sách của sàn.</p></details>
+      </div>
+    </section>
+
+    <section class="wrap disclosure">
+      <h3>Thông báo liên kết tiếp thị</h3>
+      <p>DinoLink có thể nhận hoa hồng khi bạn mua hàng qua đường link được tạo. Việc này không làm tăng giá sản phẩm của bạn. DinoLink là nền tảng độc lập, không phải website chính thức của Shopee hoặc TikTok Shop.</p>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer"><span>© 2026 DinoLink. Nền tảng tạo link mua hàng Shopee và TikTok Shop.</span><div class="footer-links"><button onclick="openLegal('privacy')">Chính sách bảo mật</button><button onclick="openLegal('terms')">Điều khoản sử dụng</button><span>Hỗ trợ: support@dinolink.vn</span></div></div></footer>
+</div>
+
+<div id="loginModal" class="modal-bg hidden"><div class="modal"><button class="close" onclick="closeLogin()">×</button><span class="mark" style="margin:auto">🔗</span><h2>Đăng nhập DinoLink</h2><p>Tiếp tục bằng tài khoản Google để DinoLink hiển thị tên, email và ảnh đại diện của bạn.</p><button id="googleLoginButton" class="google-wide" type="button" onclick="loginWithGoogle()"><span class="g">G</span>Tiếp tục với Google</button><p id="firebaseSetupNote" class="note">DinoLink sử dụng Firebase Authentication và Cloud Firestore để đồng bộ lịch sử theo tài khoản. Website không nhận hoặc lưu mật khẩu Gmail của bạn.</p></div></div>
+<div id="legalModal" class="modal-bg hidden"><div class="modal legal"><button class="close" onclick="closeLegal()">×</button><h2 id="legalTitle"></h2><div id="legalBody"></div></div></div>
+<div id="toast" class="toast">Đã sao chép</div>
+
+<script>
+  const HISTORY_BASE='dinolink_history_v12', LEGACY_GUEST_KEYS=['dinolink_history_v11_guest','dinolink_history_v9'];
+  let currentResult=null, firebaseUser=null, cloudHistory=[], cloudSyncReady=false, cloudUnsubscribe=null;
+  const $=id=>document.getElementById(id);
+  const money=n=>new Intl.NumberFormat('vi-VN',{style:'currency',currency:'VND',maximumFractionDigits:0}).format(Number(n)||0);
+  const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const platformFor=value=>{const v=String(value).toLowerCase();if(v.includes('shopee')||v.includes('shope.ee'))return'Shopee';if(v.includes('tiktok'))return'TikTok Shop';return''};
+  function localHistoryKey(uid=firebaseUser?.uid||'guest'){return HISTORY_BASE+'_'+uid}
+  function readLocalHistory(key=localHistoryKey()){try{return JSON.parse(localStorage.getItem(key))||[]}catch{return[]}}
+  function writeLocalHistory(rows,key=localHistoryKey()){localStorage.setItem(key,JSON.stringify(rows))}
+  function dedupeHistory(rows){const seen=new Set();return rows.filter(row=>row?.id&&!seen.has(row.id)&&seen.add(row.id)).sort((a,b)=>new Date(b.time)-new Date(a.time))}
+  function readHistory(){return firebaseUser?cloudHistory:readLocalHistory()}
+  function setSyncState(type,text){const el=$('syncState');if(!el)return;el.className='sync-state'+(type?' '+type:'');el.textContent=text}
+  function cacheCloudHistory(rows){cloudHistory=dedupeHistory(rows);writeLocalHistory(cloudHistory,localHistoryKey(firebaseUser?.uid||'guest'));renderHistory()}
+  function guestRowsForMigration(){const rows=[...readLocalHistory(localHistoryKey('guest'))];for(const key of LEGACY_GUEST_KEYS)rows.push(...readLocalHistory(key));return dedupeHistory(rows)}
+  async function connectCloudHistory(user){
+    cloudUnsubscribe?.();cloudUnsubscribe=null;cloudSyncReady=false;
+    const uid=user.uid, uidLocal=dedupeHistory([...readLocalHistory(localHistoryKey(uid)),...readLocalHistory('dinolink_history_v11_'+uid)]);
+    cloudHistory=dedupeHistory(uidLocal);renderHistory();setSyncState('syncing','Đang đồng bộ lịch sử...');
+    if(!window.dinoListenHistory||!window.dinoMigrateHistory){setSyncState('error','Firestore chưa được cấu hình');return}
+    try{
+      cloudUnsubscribe=window.dinoListenHistory(uid,rows=>{cloudSyncReady=true;cacheCloudHistory(rows);setSyncState('cloud','Đã đồng bộ với Google')},error=>{console.error(error);setSyncState('error','Không thể đồng bộ Firestore');showToast(window.dinoFirestoreErrorMessage?.(error)||'Không thể tải lịch sử đồng bộ')});
+      let migrateRows=[...uidLocal];
+      const guestRows=guestRowsForMigration();
+      const migrationFlag='dinolink_guest_migrated_'+uid;
+      let importGuest=false;
+      if(guestRows.length&&!localStorage.getItem(migrationFlag)){
+        const ok=confirm(`Thiết bị này đang có ${guestRows.length} lịch sử chưa đồng bộ. Bạn có muốn đưa chúng vào tài khoản ${user.email||'Google này'} không?`);
+        if(ok){migrateRows.push(...guestRows);importGuest=true}
+      }
+      migrateRows=dedupeHistory(migrateRows);
+      await window.dinoSaveUserProfile?.(uid,{name:user.displayName||'',email:user.email||'',photoURL:user.photoURL||''});
+      if(migrateRows.length)await window.dinoMigrateHistory(uid,migrateRows);
+      if(importGuest)localStorage.setItem(migrationFlag,'1');
+    }catch(error){console.error(error);setSyncState('error','Lỗi đồng bộ · đang dùng bản lưu thiết bị');showToast(window.dinoFirestoreErrorMessage?.(error)||'Không thể kết nối Cloud Firestore')}
+  }
+  function disconnectCloudHistory(){cloudUnsubscribe?.();cloudUnsubscribe=null;cloudHistory=[];cloudSyncReady=false;setSyncState('','Chưa đăng nhập · lưu trên thiết bị')}
+  function showToast(text){$('toast').textContent=text;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)}
+  function syncPlatform(){const p=platformFor($('urlInput').value);$('detected').textContent=p?'Đã nhận diện: '+p:'';$('detected').classList.toggle('hidden',!p);$('clearBtn').classList.toggle('hidden',!$('urlInput').value);$('chipShopee').classList.toggle('active',p==='Shopee');$('chipTikTok').classList.toggle('active',p==='TikTok Shop');$('errorBox').classList.add('hidden')}
+  $('urlInput').addEventListener('input',syncPlatform);
+  $('pasteBtn').onclick=async()=>{try{$('urlInput').value=await navigator.clipboard.readText();syncPlatform()}catch{$('errorBox').textContent='Trình duyệt chưa cho phép đọc bộ nhớ tạm. Hãy dán link thủ công.';$('errorBox').classList.remove('hidden')}};
+  $('clearBtn').onclick=()=>{$('urlInput').value='';syncPlatform();$('urlInput').focus()};
+  $('linkForm').addEventListener('submit',e=>{e.preventDefault();const url=$('urlInput').value.trim(),platform=platformFor(url);if(!platform){$('errorBox').textContent='Link chưa được hỗ trợ. Vui lòng dán link Shopee hoặc TikTok Shop.';$('errorBox').classList.remove('hidden');return}const btn=$('submitBtn');btn.disabled=true;btn.textContent='DinoLink đang xử lý đường link...';setTimeout(()=>{const shopee=platform==='Shopee';const price=shopee?259000:349000;const old=shopee?319000:429000;const id='DL-'+Date.now().toString(36).toUpperCase();const affiliate='https://dinolink.vn/go/demo-'+id.toLowerCase();currentResult={id,platform,product:shopee?'Sản phẩm Shopee được nhận diện':'Sản phẩm TikTok Shop được nhận diện',shop:shopee?'Dino Official Store':'Dino Creator Shop',price,oldPrice:old,original:url,affiliate,time:new Date().toISOString(),status:'Đã tạo link',clicked:false,user:readUser()?.email||'Khách ẩn danh'};$('linkForm').classList.add('hidden');$('result').classList.remove('hidden');$('resultPlatform').textContent=platform;$('resultName').textContent=currentResult.product;$('resultShop').textContent=currentResult.shop;$('resultPrice').textContent=money(price);$('resultOldPrice').textContent=money(old);$('affiliateUrl').textContent=affiliate;$('productImage').className='product-image '+(shopee?'shopee':'tiktok');$('buyBtn').href=url;saveCurrent();renderHistory();btn.disabled=false;btn.textContent='Tạo link ngay'},850)});
+  async function saveCurrent(){if(!currentResult)return;if(firebaseUser&&window.dinoSaveHistoryItem){if(!cloudHistory.some(x=>x.id===currentResult.id)){cloudHistory.unshift(currentResult);cacheCloudHistory(cloudHistory)}try{await window.dinoSaveHistoryItem(firebaseUser.uid,currentResult)}catch(error){console.error(error);showToast(window.dinoFirestoreErrorMessage?.(error)||'Chưa thể đồng bộ lịch sử')}return}const rows=readLocalHistory();if(!rows.some(x=>x.id===currentResult.id)){rows.unshift(currentResult);writeLocalHistory(rows);renderHistory()}}
+  $('copyBtn').onclick=async()=>{try{await navigator.clipboard.writeText(currentResult.affiliate);showToast('Đã sao chép link DinoLink')}catch{showToast('Không thể sao chép tự động')}};
+  $('buyBtn').onclick=async()=>{if(!currentResult)return;await markClicked(currentResult.id)};
+  $('resetBtn').onclick=()=>{$('result').classList.add('hidden');$('linkForm').classList.remove('hidden');$('urlInput').value='';syncPlatform();$('urlInput').focus()};
+  function withinRange(date,range){if(range==='all')return true;const diff=Date.now()-new Date(date).getTime();const day=86400000;return diff<=(range==='day'?day:range==='week'?7*day:30*day)}
+  function filteredHistory(){const q=$('historySearch').value.toLowerCase().trim(),p=$('platformFilter').value,t=$('timeFilter').value;return readHistory().filter(x=>(p==='all'||x.platform===p)&&withinRange(x.time,t)&&[x.product,x.original,x.affiliate,x.shop].join(' ').toLowerCase().includes(q))}
+  function renderHistory(){const all=readHistory(),rows=filteredHistory();$('totalLinks').textContent=all.length;$('shopeeLinks').textContent=all.filter(x=>x.platform==='Shopee').length;$('tiktokLinks').textContent=all.filter(x=>x.platform==='TikTok Shop').length;$('totalValue').textContent=money(all.reduce((s,x)=>s+Number(x.price||0),0));$('emptyHistory').classList.toggle('hidden',rows.length>0);$('historyRows').innerHTML=rows.map(x=>`<tr><td>${new Date(x.time).toLocaleString('vi-VN')}</td><td>${escapeHtml(x.platform)}</td><td>${escapeHtml(x.product)}</td><td>${money(x.price)}</td><td><span class="status ${x.clicked?'ok':'demo'}">${x.clicked?'Đã bấm mua':'Đã tạo link'}</span></td><td><div class="row-actions"><a class="rebuy" href="${escapeHtml(x.original)}" target="_blank" rel="noopener" onclick="markClicked('${x.id}')">Mua lại</a><button onclick="copyHistory('${x.id}')">Sao chép</button><button class="delete" onclick="deleteHistory('${x.id}')">Xóa</button></div></td></tr>`).join('');$('historyCards').innerHTML=rows.map(x=>`<article class="history-card"><div class="history-card-head"><div><h3>${escapeHtml(x.product)}</h3><div class="history-meta">${escapeHtml(x.platform)} · ${new Date(x.time).toLocaleString('vi-VN')}</div></div><span class="status ${x.clicked?'ok':'demo'}">${x.clicked?'Đã bấm mua':'Đã tạo link'}</span></div><div class="history-price">${money(x.price)}</div><div class="history-buttons"><a class="buy" href="${escapeHtml(x.original)}" target="_blank" rel="noopener" onclick="markClicked('${x.id}')">Mua lại</a><button onclick="copyHistory('${x.id}')">Sao chép</button><button onclick="deleteHistory('${x.id}')">✕</button></div></article>`).join('')}
+  async function markClicked(id){const clickedAt=new Date().toISOString();if(firebaseUser&&window.dinoUpdateHistoryItem){const row=cloudHistory.find(x=>x.id===id);if(row){row.clicked=true;row.clickedAt=clickedAt;cacheCloudHistory(cloudHistory)}try{await window.dinoUpdateHistoryItem(firebaseUser.uid,id,{clicked:true,clickedAt})}catch(error){console.error(error);showToast('Chưa thể cập nhật lịch sử đồng bộ')}return}const rows=readLocalHistory(),row=rows.find(x=>x.id===id);if(row){row.clicked=true;row.clickedAt=clickedAt;writeLocalHistory(rows);renderHistory()}}
+  async function copyHistory(id){const row=readHistory().find(x=>x.id===id);if(!row)return;try{await navigator.clipboard.writeText(row.affiliate);showToast('Đã sao chép link')}catch{showToast('Không thể sao chép tự động')}}
+  async function deleteHistory(id){if(firebaseUser&&window.dinoDeleteHistoryItem){const previous=[...cloudHistory];cacheCloudHistory(cloudHistory.filter(x=>x.id!==id));try{await window.dinoDeleteHistoryItem(firebaseUser.uid,id);showToast('Đã xóa lịch sử đồng bộ')}catch(error){console.error(error);cacheCloudHistory(previous);showToast('Không thể xóa lịch sử')}return}writeLocalHistory(readLocalHistory().filter(x=>x.id!==id));renderHistory();showToast('Đã xóa lịch sử')}
+  async function clearHistory(){if(!readHistory().length)return;if(!confirm('Bạn có chắc muốn xóa toàn bộ lịch sử?'))return;if(firebaseUser&&window.dinoClearHistory){const previous=[...cloudHistory];cacheCloudHistory([]);try{await window.dinoClearHistory(firebaseUser.uid);showToast('Đã xóa toàn bộ lịch sử đồng bộ')}catch(error){console.error(error);cacheCloudHistory(previous);showToast('Không thể xóa lịch sử')}return}writeLocalHistory([]);renderHistory();showToast('Đã xóa toàn bộ lịch sử')}
+  function exportHistory(){const rows=filteredHistory();if(!rows.length){showToast('Chưa có dữ liệu để xuất');return}const csv=['Thời gian,Nền tảng,Sản phẩm,Cửa hàng,Giá,Link gốc,Link DinoLink,Đã bấm mua',...rows.map(x=>[new Date(x.time).toLocaleString('vi-VN'),x.platform,x.product,x.shop,x.price,x.original,x.affiliate,x.clicked?'Có':'Không'].map(v=>'"'+String(v).replaceAll('"','""')+'"').join(','))].join('\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='DinoLink_Lich_su.csv';a.click();URL.revokeObjectURL(a.href)}
+  ['historySearch','platformFilter','timeFilter'].forEach(id=>$(id).addEventListener(id==='historySearch'?'input':'change',renderHistory));
+  function readUser(){return firebaseUser}
+  function renderUser(){const u=readUser();$('loginBtn').classList.toggle('hidden',!!u);$('userBox').classList.toggle('hidden',!u);if(u){$('userName').textContent=u.name||'Người dùng Google';$('userEmail').textContent=u.email||'';const avatar=$('avatar');if(u.photoURL){avatar.textContent='';avatar.style.backgroundImage=`url("${String(u.photoURL).replace(/"/g,'%22')}")`}else{avatar.style.backgroundImage='';avatar.textContent=(u.name||u.email||'G').trim().charAt(0).toUpperCase()}}}
+  function openLogin(){$('loginModal').classList.remove('hidden')}function closeLogin(){$('loginModal').classList.add('hidden')}
+  async function loginWithGoogle(){const button=$('googleLoginButton');if(!window.dinoGoogleLogin){showToast('Firebase chưa được cấu hình. Xem file README.');return}button.disabled=true;button.textContent='Đang mở Google...';try{await window.dinoGoogleLogin()}catch(error){console.error(error);showToast(window.dinoAuthErrorMessage?.(error)||'Không thể đăng nhập Google')}finally{button.disabled=false;button.innerHTML='<span class="g">G</span>Tiếp tục với Google'}}
+  function toggleMenu(e){e.stopPropagation();$('userMenu').classList.toggle('hidden')}document.addEventListener('click',()=>$('userMenu').classList.add('hidden'));
+  async function logout(e){e.stopPropagation();$('userMenu').classList.add('hidden');try{await window.dinoGoogleLogout?.();showToast('Đã đăng xuất')}catch(error){console.error(error);showToast('Không thể đăng xuất')}}
+  window.handleDinoAuthState=async user=>{disconnectCloudHistory();firebaseUser=user?{uid:user.uid,name:user.displayName||'',email:user.email||'',photoURL:user.photoURL||''}:null;closeLogin();renderUser();renderHistory();if(user){showToast('Đăng nhập Google thành công');await connectCloudHistory(user)}};
+  window.handleDinoAuthSetup=configured=>{if(!configured){$('firebaseSetupNote').textContent='Chưa nhập cấu hình Firebase. Hãy mở file firebase-config.js và dán thông tin dự án của bạn.'}};
+  window.handleDinoFirestoreSetup=configured=>{if(!configured&&firebaseUser)setSyncState('error','Firestore chưa được cấu hình')};
+  function scrollHistory(e){e.stopPropagation();$('userMenu').classList.add('hidden');$('history').scrollIntoView()}
+  function openLegal(type){const privacy=type==='privacy';$('legalTitle').textContent=privacy?'Chính sách bảo mật':'Điều khoản sử dụng';$('legalBody').innerHTML=privacy?'<p>DinoLink chỉ ghi nhận đường link sản phẩm mà bạn chủ động dán, dữ liệu lịch sử và thông tin tài khoản đăng nhập cần thiết để cung cấp dịch vụ. DinoLink không yêu cầu mật khẩu Shopee, TikTok hoặc thông tin thanh toán.</p><p>Khi chưa đăng nhập, lịch sử được lưu trên thiết bị. Khi đăng nhập Google và bật Cloud Firestore, lịch sử được lưu theo mã tài khoản Firebase để có thể đồng bộ trên các thiết bị dùng cùng tài khoản.</p>':'<p>DinoLink hỗ trợ xử lý đường link và không đảm bảo giá, tồn kho, khuyến mãi hoặc điều kiện hoa hồng của nền tảng thứ ba. Người dùng chịu trách nhiệm kiểm tra thông tin sản phẩm trước khi đặt hàng.</p><p>DinoLink là nền tảng độc lập, không đại diện cho Shopee hoặc TikTok Shop.</p>';$('legalModal').classList.remove('hidden')}
+  function closeLegal(){$('legalModal').classList.add('hidden')}
+  renderUser();renderHistory();
+</script>
+<script type="module" src="firebase-config.js"></script>
+</body>
+</html>
